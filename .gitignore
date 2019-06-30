@@ -1,0 +1,5 @@
+# 忽略文件
+config.js
+# 忽略文件夹
+test/
+node_modules/
