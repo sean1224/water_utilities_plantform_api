@@ -1,8 +1,8 @@
 module.exports = app => {
   app.get("/", (req, res) => {
-    res.json({"data":app.db.res1});
+    res.json({"a":app.db.models.res1.recordset});
   });
   app.get("/tasks", (req, res) => {
-    res.json({"data":app.db.res2});
+    res.json({"a":app.db.models.res2.recordset});
   });
 };

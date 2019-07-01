@@ -3,7 +3,8 @@ var consign = require("consign");
 var app = express();
 consign()
   .include("libs/config.js")
-  .include("db.js")
+  .then("db.js")
+  .then("auth.js")
   .then("libs/middlewares.js")
   .then("routes")
   .then("libs/boot.js")
