@@ -25,8 +25,10 @@
     "express-generator": "^4.16.1",
     "hotnode": "0.0.8",
     "jslint": "^0.12.1",
-    "mssql": "^5.1.0",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "sequelize": "^5.9.4",
+    "sqlite3": "^4.0.9",
+    "tedious": "^6.2.0"
   }
 }

@@ -1,14 +1,30 @@
-var mssql = require("mssql");
+const fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
+let db = null;
 module.exports = app => {
-  var connectionPool = new mssql.ConnectionPool(app.libs.config).connect();
-  var db ={
-    connectionPool,
-    models:{}
-  };
-  connectionPool.then((request) =>{
-    request.query("select * from SDE_version").then(result => db.models.res1 = result);
-    request.query("select *from SDE_archives").then(result => db.models.res2 = result);
-  });
-  connectionPool.catch(error => console.log(error));
+  if (!db) {
+    const config = app.libs.config;
+    const sequelize = new Sequelize(
+      config.database,
+      config.username,
+      config.password,
+      config.params
+    );
+    db = {
+      sequelize,
+      Sequelize,
+      models: {}
+    };
+    const dir = path.join(__dirname, "models");
+    fs.readdirSync(dir).forEach(file => {
+      const modelDir = path.join(dir, file);
+      const model = sequelize.import(modelDir);
+      db.models[model.name] = model;
+    });
+    Object.keys(db.models).forEach(key => {
+      db.models[key].associate(db.models);
+    });
+  }
   return db;
-}
+};
