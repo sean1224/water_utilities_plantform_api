@@ -2,7 +2,7 @@ var express = require("express");
 var consign = require("consign");
 var app = express();
 consign()
-  .include("db.js")
+  .include("libs/config.js")
   .then("db.js")
   .then("libs/middlewares.js")
   .then("routes")

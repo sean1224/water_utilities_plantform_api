@@ -22,9 +22,10 @@ module.exports = app => {
       const model = sequelize.import(modelDir);
       db.models[model.name] = model;
     });
-    Object.keys(db.models).forEach(key => {
-      db.models[key].associate(db.models);
-    });
+    // Object.keys(db.models).forEach(key => {
+    //    // console.log(db.models[key].classMethods)
+    //    db.models[key].options.classMethods.associate(db.models);
+    // });
   }
   return db;
 };
