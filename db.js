@@ -23,8 +23,8 @@ module.exports = app => {
       db.models[model.name] = model;
     });
     // Object.keys(db.models).forEach(key => {
-    //    // console.log(db.models[key].classMethods)
-    //    db.models[key].options.classMethods.associate(db.models);
+    //    console.log(db.models[key])
+    //   //  db.models[key].options.classMethods.associate(db.models);
     // });
   }
   return db;
