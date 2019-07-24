@@ -7,6 +7,10 @@ module.exports = (sequelize, DataType) => {
     password: {
       type: DataType.STRING,
       field: 'password'
+    },
+    pk_id:{
+      type: DataType.INTEGER,
+      field: 'pk_id'
     }
   },{
     timestamps: false,
