@@ -14,7 +14,6 @@ module.exports = app => {
           let c = parseFloat(req.query.c);
           let b = parseFloat(req.query.b);
           let n = parseFloat(req.query.n);
-          console.log(req.query)
           let arr1 = []; // 高峰之后结果数组
           let arr2 = []; // 高峰之前结果数组
           // 计算高峰之后降雨强度
