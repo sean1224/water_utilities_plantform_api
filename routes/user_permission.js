@@ -1,5 +1,4 @@
 module.exports = app => {
-    const models = app.db.models;
     const sequelize = app.db.sequelize;
     app.route('/getModule')
     .get((req,res) => {

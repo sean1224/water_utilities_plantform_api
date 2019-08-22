@@ -1,6 +1,4 @@
 module.exports = app => {
-    const models = app.db.models;
-    const sequelize = app.db.sequelize;
     /**
      * 利用暴雨强度公式生成对应雨量图数据
      */
