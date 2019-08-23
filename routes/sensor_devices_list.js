@@ -13,7 +13,7 @@ module.exports = app => {
     .get((req, res) => {
       models.tensor_devices_list
         .findAll({
-          'order': "NAME ASC"
+          order: ['NAME']
         })
         .then(result => res.json(result))
         .catch(error => res.status(412).json({ msg: error.message }));
