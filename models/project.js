@@ -1,24 +1,28 @@
 module.exports = (sequelize, DataType) => {
-  const Project = sequelize.define("projects", {
-    PROJECT_CODE: {
+  const Project = sequelize.define("Project", {
+    projectCode: {
       type: DataType.STRING,
-      field: 'PROJECT_CODE'
+      field: 'projectCode'
     },
-    PROJECT_NAME: {
+    projectName: {
       type: DataType.STRING,
-      field: 'PROJECT_NAME'
+      field: 'projectName'
     },
-    PROJECT_ADDRESS: {
+    projectAddress: {
       type: DataType.STRING,
-      field: 'PROJECT_ADDRESS'
+      field: 'projectAddress'
     },
-    PROJECT_PRINCIPAL: {
+    principal: {
       type: DataType.STRING,
-      field: 'PROJECT_PRINCIPAL'
+      field: 'principal'
     },
-    PROJECT_TEL: {
-      type: DataType.STRING,
-      field: 'PROJECT_TEL'
+    tel: {
+      type: DataType.INTEGER,
+      field: 'tel'
+    },
+    status: {
+      type: DataType.INTEGER,
+      field: 'status'
     }
   },{
     timestamps: false,

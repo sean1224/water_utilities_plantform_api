@@ -1,6 +1,6 @@
 module.exports = app => {
   const models = app.db.models;
-  app.route("/projects")
+  app.route("/application")
     .all((req,res,next) => {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -10,18 +10,18 @@ module.exports = app => {
       next();
     })
     .get((req, res) => {
-      models.projects.findAll()
+      models.Application.findAll()
         .then(result => res.json(result))
         .catch(error => res.status(412).json({msg: error.message}))
     })
     .post((req,res) => {
-      models.projects.create(req.body)
+      models.Application.create(req.body)
         .then(result => res.json(result))
         .catch(error => res.status(412).json({msg:error.me}))
     });
-  app.route("/projects/:id")
+  app.route("/application/:id")
     .get((req,res) => {
-      models.projects.findOne({where:req.params})
+      models.Application.findOne({where:req.params})
         .then(result => {
           if(result){
             res.json(result)
@@ -35,12 +35,12 @@ module.exports = app => {
         })
     })
     .put((req,res) => {
-      models.projects.update(req.body,{where: req.params})
+      models.Application.update(req.body,{where: req.params})
         .then(result => res.sendStatus(204))
         .catch(error => res.status(412).json({msg:error.message}))
     })
     .delete((req,res) => {
-      models.projects.destroy({where:req.params})
+      models.Application.destroy({where:req.params})
         .then(result => res.sendStatus(204))
         .catch(error => res.status(412).json({msg:error.message}))
     })

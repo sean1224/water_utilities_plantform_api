@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataType) => {
-    const tensor_devices_list = sequelize.define("tensor_devices_list", {
+    const tensor_devices_list = sequelize.define("sensorDevices", {
       // ID: {
       //   type: DataType.INTEGER,
       //   field: 'ID'

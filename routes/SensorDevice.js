@@ -1,7 +1,7 @@
 module.exports = app => {
   const models = app.db.models;
   app
-    .route("/deviceslist")
+    .route("/devicelist")
     .all((req, res, next) => {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -11,7 +11,7 @@ module.exports = app => {
       next();
     })
     .get((req, res) => {
-      models.tensor_devices_list
+      models.sensorDevices
         .findAll({
           order: ['NAME']
         })
@@ -19,19 +19,19 @@ module.exports = app => {
         .catch(error => res.status(412).json({ msg: error.message }));
     })
     .post((req, res) => {
-      models.tensor_devices_list
+      models.sensorDevices
         .create(req.body)
         .then(result => res.json(result))
         .catch(error => res.status(412).json({ msg: error.me }));
     });
   app
-    .route("/deviceslist/:id")
+    .route("/devicelist/:id")
     .all((req, res, next) => {
       delete req.body.id;
       next();
     })
     .get((req, res) => {
-      models.tensor_devices_list.findOne({ where: req.params })
+      models.sensorDevices.findOne({ where: req.params })
         .then(result => {
           if (result) {
             res.json(result);
@@ -45,7 +45,7 @@ module.exports = app => {
     })
     .put((req, res) => {
       // console.log(req)
-      models.tensor_devices_list.update(req.body, { where: req.params })
+      models.sensorDevices.update(req.body, { where: req.params })
         .then(result => {
           res.sendStatus(204)
         })
@@ -54,7 +54,7 @@ module.exports = app => {
         });
     })
     .delete((req, res) => {
-      models.tensor_devices_list.destroy({ where: req.params })
+      models.sensorDevices.destroy({ where: req.params })
         .then(result => res.sendStatus(204))
         .catch(error => {
           res.status(412).json({ msg: error.message });

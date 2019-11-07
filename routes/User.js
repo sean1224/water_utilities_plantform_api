@@ -10,7 +10,7 @@ module.exports = app => {
       next();
     })
     .get((req,res) => {
-      models.k_user.findAll()
+      models.users.findAll()
       .then(result => res.json(result))
       .catch(error => res.status(412).json({msg:error.message}))
     })
@@ -25,7 +25,7 @@ module.exports = app => {
       next();
     })
     .get((req,res) => {
-      models.k_user.findAll({
+      models.users.findAll({
         where: {
           username: req.query.username,
           password: req.query.password
@@ -35,13 +35,13 @@ module.exports = app => {
       .catch(error => res.status(412).json({msg: error.message}))
     })
     .post((req,res) => {
-      models.k_user.create(req.body)
+      models.users.create(req.body)
         .then(result => res.json(result))
         .catch(error => res.status(412).json({msg:error.me}))
     })
   app.route('/login/:id')
     .delete((req,res) => {
-      models.k_user.destroy({where:req.params})
+      models.users.destroy({where:req.params})
         .then(result => res.sendStatus(204))
         .catch(error => res.status(412).json({msg:error.message}))
     })
