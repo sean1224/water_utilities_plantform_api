@@ -1,6 +1,6 @@
 module.exports = app => {
     const sequelize = app.db.sequelize;
-    app.route('/sensor_list')
+    app.route('/sensordata')
       .get((req,res) => {
         const cmembarcode = req.query.cmembarcode;
         const sensorname = req.query.sensorname;
@@ -13,7 +13,7 @@ module.exports = app => {
           	FROM (
           		SELECT SENSOR_NAME, AVG(sensor_list_value) AS SENSOR_VALUE, SCM_NAME
           			, CONVERT(VARCHAR(10), SENSOR_LIST_DATE, 120) AS SCM_TIMEx
-          		FROM water_sensor_list
+          		FROM SensorData
           		WHERE CMEMBER_CODE = :cmembarcode
           			AND sensor_name = :sensorname
           			AND SENSOR_LIST_DATE BETWEEN :begintime AND :endtime
@@ -29,7 +29,7 @@ module.exports = app => {
           	LEFT JOIN (
           		SELECT SENSOR_NAME, AVG(sensor_list_value) AS SENSOR_VALUE, SCM_NAME
           			, CONVERT(VARCHAR(10), SENSOR_LIST_DATE, 120) AS SCM_TIME
-          		FROM water_sensor_list
+          		FROM SensorData
           		WHERE CMEMBER_CODE = :cmembarcode
           			AND sensor_name = :sensorname
           			AND SENSOR_LIST_DATE BETWEEN :begintime AND :endtime
